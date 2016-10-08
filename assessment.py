@@ -52,7 +52,6 @@ class Question(object):
             return self.right_answer
 
 
-
 class Exam(object):
     """FILL IN DOCSTRING"""
 
@@ -79,19 +78,16 @@ class Exam(object):
         return self.score
 
 class Quiz(Exam):
+    """FILL IN DOCSTRING"""
+
     def administer(self):
-        self.score = 0
-        self.number_of_questions = len(self.questions)
+        """FILL IN DOCSTRING"""
+        super(Quiz, self).administer()
+        self.score_for_gradebook()
 
-        for question in self.questions:
-            question.ask_and_evaluate()
-            print question.right_answer
-            if question.right_answer == True:
-                self.score += 1
-            print self.score
-
-
-        self.percent_correct = float(self.score)/self.number_of_questions
+    def score_for_gradebook(self):
+        """FILL IN DOCSTRING"""
+        self.percent_correct = float(self.score) / self.number_of_questions
         
         if self.percent_correct >= 0.5:
             print "You passed!"
@@ -112,6 +108,8 @@ jill = Student('Jill', 'Berardini', '2012 Baker Street')
 
 exam = Exam('Monty Python')
 
+###Test example functions####
+
 def take_test(exam_name, student):
     """FILL IN DOCSTRINGS"""
     exam_name.administer()
@@ -130,6 +128,8 @@ def example(exam_name, student, question_one, question_two, question_three):
 
     return student_score
 
+example(exam_name = exam, student = jill, question_one = question_one, 
+        question_two = question_two, question_three = question_three)
 
 
 
