@@ -4,16 +4,33 @@ Part 1: Discussion
 1. What are the three main design advantages that object orientation
    can provide? Explain each concept.
 
+   A) Polymorphism: It's easy to make different, but interchangeable types
+   B) Encapsulation: Functions and their relevant data are grouped together
+   C) Abstraction: You don't need to understand how a method works to use it
+
+
 2. What is a class?
+   A template for creating objects
 
 3. What is an instance attribute?
+   A characteristic of one particular occurence within a class
 
 4. What is a method?
+   A function that belongs to a particular class
 
 5. What is an instance in object orientation?
+   One particular occurence of a class
 
 6. How is a class attribute different than an instance attribute?
    Give an example of when you might use each.
+
+   A class attribute is defined for every member of a class.
+   An instance attribute is defined only for a particular instance. 
+   In defining an animal class hierarchy, it would be appropriate in each subclass
+   to define a class attribute for species (e.g. cat, dog, etc.), since all members
+   of the subclass share that attribute. However, it would be better to define
+   name as an instance attribute, since every animal instance will likely have a 
+   particular name.
 
 
 """
@@ -23,24 +40,24 @@ Part 1: Discussion
 # Create your classes and class methods
 
 class Student(object):
-    """FILL IN DOCSTRING"""
+    """Creates a student class"""
 
     def __init__(self, first_name, last_name, address):
-        """FILL IN DOCSTRING"""
+        """Initialize student attributes"""
         self.first_name = first_name
         self.last_name = last_name
         self.address = address
 
 class Question(object):
-    """FILL IN DOCSTRING"""
+    """Creates a question class"""
 
     def __init__(self, question, correct_answer):
-        """FILL IN DOCSTRING"""
+        """Initialize question attributes"""
         self.question = question
         self.correct_answer = correct_answer
 
     def ask_and_evaluate(self):
-        """FILL IN DOCSTRING"""
+        """Ask question and compare user answer to correct answer"""
         print self.question
         self.user_answer = raw_input("Please enter your answer: ")
 
@@ -53,20 +70,20 @@ class Question(object):
 
 
 class Exam(object):
-    """FILL IN DOCSTRING"""
+    """Creates an exam class"""
 
     def __init__(self, name):
-        """FILL IN DOCSTRING"""
+        """Initialize exam attributes"""
         self.name = name
         self.questions = []
 
     def add_question(self, question):
-        """FILL IN DOCSTRING"""
+        """Add a question to an exam"""
 
         self.questions.append(question)
 
     def administer(self):
-        """FILL IN DOCSTRINGS"""
+        """Ask user all question on exam and track score"""
         self.score = 0
         self.number_of_questions = len(self.questions)
 
@@ -78,15 +95,15 @@ class Exam(object):
         return self.score
 
 class Quiz(Exam):
-    """FILL IN DOCSTRING"""
+    """Creates a quiz subclass of Exam"""
 
     def administer(self):
-        """FILL IN DOCSTRING"""
+        """Ask user all questions, track score, and return Pass/Fail"""
         super(Quiz, self).administer()
         self.score_for_gradebook()
 
     def score_for_gradebook(self):
-        """FILL IN DOCSTRING"""
+        """Evalute Pass / Fail based on percent correct"""
         self.percent_correct = float(self.score) / self.number_of_questions
         
         if self.percent_correct >= 0.5:
@@ -108,16 +125,16 @@ jill = Student('Jill', 'Berardini', '2012 Baker Street')
 
 exam = Exam('Monty Python')
 
-###Test example functions####
+###Create take_test and example functions####
 
 def take_test(exam_name, student):
-    """FILL IN DOCSTRINGS"""
+    """Administers exam and saves score as a student attribute"""
     exam_name.administer()
     student.score = exam_name.score
 
 
 def example(exam_name, student, question_one, question_two, question_three):
-    """FILL IN DOCSTRINGS"""
+    """Add questions to test, administer exam, and save student score"""
     exam_name.add_question(question_one)
     exam_name.add_question(question_two)
     exam_name.add_question(question_three)
