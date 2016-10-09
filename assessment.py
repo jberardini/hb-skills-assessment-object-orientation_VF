@@ -43,7 +43,7 @@ class Student(object):
     """Creates a student class"""
 
     def __init__(self, first_name, last_name, address):
-        """Initialize student attributes"""
+        """Initialize student with first name, last name, and address"""
         self.first_name = first_name
         self.last_name = last_name
         self.address = address
@@ -52,7 +52,7 @@ class Question(object):
     """Creates a question class"""
 
     def __init__(self, question, correct_answer):
-        """Initialize question attributes"""
+        """Initialize question with question and correct answer"""
         self.question = question
         self.correct_answer = correct_answer
 
@@ -73,7 +73,7 @@ class Exam(object):
     """Creates an exam class"""
 
     def __init__(self, name):
-        """Initialize exam attributes"""
+        """Initialize exam with name and an empty list for questions"""
         self.name = name
         self.questions = []
 
@@ -85,8 +85,7 @@ class Exam(object):
     def administer(self):
         """Ask user all question on exam and track score"""
         self.score = 0
-        self.number_of_questions = len(self.questions)
-
+        
         for question in self.questions:
             question.ask_and_evaluate()
             if question.right_answer == True:
@@ -104,6 +103,7 @@ class Quiz(Exam):
 
     def score_for_gradebook(self):
         """Evalute Pass / Fail based on percent correct"""
+        self.number_of_questions = len(self.questions)
         self.percent_correct = float(self.score) / self.number_of_questions
         
         if self.percent_correct >= 0.5:
@@ -134,7 +134,7 @@ def take_test(exam_name, student):
 
 
 def example(exam_name, student, question_one, question_two, question_three):
-    """Add questions to test, administer exam, and save student score"""
+    """Add questions to exam, administer exam, and save student score"""
     exam_name.add_question(question_one)
     exam_name.add_question(question_two)
     exam_name.add_question(question_three)
